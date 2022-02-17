@@ -1,52 +1,57 @@
-import { useState } from 'react'
-import randomColor from 'color-randomizer'
+import { useState } from "react"
+import randomColor from "color-randomizer"
 import {
   Container,
   Navbar,
   MainSection,
   ColorCode,
-  Button, 
+  Button,
   NavButton,
-  NavLogo
-} from './AppStyles'
+  NavLogo,
+} from "./AppStyles"
 
 function App() {
-
   const [color, setColor] = useState("#29a329")
   const [option, setOption] = useState("hex")
 
   const generateColor = () => {
-    setColor(randomColor({ format: option }));
+    setColor(randomColor({ format: option }))
   }
 
   const changeOption = (e, opt) => {
-    e.preventDefault();
-    setOption(opt);
+    e.preventDefault()
+    setOption(opt)
   }
 
   return (
-      <Container>
-        <Navbar>
-          <NavLogo>React ColorFlipper</NavLogo>
-          <NavButton 
-            onClick={e => changeOption(e, "name")}
-            className={option === 'name' ? 'active' : null}
-          >Normal</NavButton>
-          <NavButton 
-            onClick={e => changeOption(e, "hex")}
-            className={option === 'hex' ? 'active' : null}
-          >Hex</NavButton>
-          <NavButton 
-            onClick={e => changeOption(e, "rgb")}
-            className={option === 'rgb' ? 'active' : null}  
-          >RGB</NavButton>
-        </Navbar>
-          <MainSection color={color}>
-            <ColorCode>Background: {color}</ColorCode>
-            <Button onClick={generateColor}>Change color</Button>
-          </MainSection>
-      </Container>
-  );
+    <Container>
+      <Navbar>
+        <NavLogo>React ColorFlipper</NavLogo>
+        <NavButton
+          onClick={(e) => changeOption(e, "name")}
+          className={option === "name" && "active"}
+        >
+          Normal
+        </NavButton>
+        <NavButton
+          onClick={(e) => changeOption(e, "hex")}
+          className={option === "hex" && "active"}
+        >
+          Hex
+        </NavButton>
+        <NavButton
+          onClick={(e) => changeOption(e, "rgb")}
+          className={option === "rgb" && "active"}
+        >
+          RGB
+        </NavButton>
+      </Navbar>
+      <MainSection color={color}>
+        <ColorCode>Background: {color}</ColorCode>
+        <Button onClick={generateColor}>Change color</Button>
+      </MainSection>
+    </Container>
+  )
 }
 
-export default App;
+export default App
